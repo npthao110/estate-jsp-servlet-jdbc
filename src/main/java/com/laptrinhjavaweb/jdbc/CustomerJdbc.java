@@ -7,13 +7,11 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.laptrinhjavaweb.constant.SystemConstant;
+import com.laptrinhjavaweb.utils.ConnectionUtils;
 import com.laptrinhjavaweb.utils.StringUtils;
 
 public class CustomerJdbc {
-	static final String DB_URL = "jdbc:mysql://localhost:3306/javacore42024";
-	static final String USER = "root";
-	static final String PASS = "Caonguyenk1@";
-	static final String QUERY = "SELECT * FROM building";
 
 	public static void main(String[] args) {
 		Connection conn = null;
@@ -22,13 +20,15 @@ public class CustomerJdbc {
 		String fullName = null;
 		
 		try {
-			StringBuilder query = new StringBuilder ("SELECT * FROM customer where 1 = 1");
+			StringBuilder query = new StringBuilder ("SELECT * FROM customer " + SystemConstant.ONE_EQUAL_ONE +"");
+//			String query ="SELECT * FROM customer " + SystemConstant.ONE_EQUAL_ONE +"";
+
 			if(!StringUtils.isNullOrEmpty(fullName)) {
 				query.append(" and name like '%"+fullName+"%'");
 			}
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			conn = ConnectionUtils.getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(query.toString());
 			ResultSetMetaData rsmd = rs.getMetaData();

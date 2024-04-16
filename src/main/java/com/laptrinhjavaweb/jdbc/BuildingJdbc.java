@@ -7,13 +7,11 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.laptrinhjavaweb.constant.SystemConstant;
+import com.laptrinhjavaweb.utils.ConnectionUtils;
 import com.laptrinhjavaweb.utils.StringUtils;
 
 public class BuildingJdbc {
-	static final String DB_URL = "jdbc:mysql://localhost:3306/javacore42024";
-	static final String USER = "root";
-	static final String PASS = "Caonguyenk1@";
-	static final String QUERY = "SELECT * FROM building";
 
 	public static void main(String[] args) {
 		// beginner code
@@ -29,25 +27,26 @@ public class BuildingJdbc {
 
 		try {
 			// build SQL query
-			StringBuilder query = new StringBuilder ("SELECT * FROM building where 1 = 1");
+			StringBuilder query = new StringBuilder ("SELECT * FROM building " + SystemConstant.ONE_EQUAL_ONE +"");
+
 			if(!StringUtils.isNullOrEmpty(name)) {
-				query.append(" and name like '%"+name+"%'");
+				query.append(" and name like '%" + name + "%'");
 			}
 			if(!StringUtils.isNullOrEmpty(street)) {
-				query.append(" and street like '%"+street+"%'");
+				query.append(" and street like '%" + street + "%'");
 			}
 			if(!StringUtils.isNullOrEmpty(ward)) {
-				query.append(" and ward like '%"+ward+"%'");
+				query.append(" and ward like '%" + ward + "%'");
 			}
 			if(!StringUtils.isNullOrEmpty(district)) {
-				query.append(" and district like '%"+district+"%'");
+				query.append(" and district like '%" + district + "%'");
 			}
 			if(floorArea != null) {
-				query.append(" and floorArea like "+floorArea+"");
+				query.append(" and floorArea like " + floorArea + "");
 			}
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			conn = ConnectionUtils.getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(query.toString());
 			ResultSetMetaData rsmd = rs.getMetaData();
