@@ -40,7 +40,6 @@ public class AccountJdbc {
 				System.out.print(", Ward: " + rs.getString("ward"));
 				System.out.println(", FloorArea: " + rs.getString("floorarea"));*/
 			}
-
 		} catch (ClassNotFoundException | SQLException e) {
 			System.out.println("Error: " + e.getMessage());
 		} catch (Exception e) {

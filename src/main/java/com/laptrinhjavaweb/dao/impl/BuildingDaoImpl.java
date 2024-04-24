@@ -1,34 +1,31 @@
-package com.laptrinhjavaweb.jdbc;
+package com.laptrinhjavaweb.dao.impl;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.laptrinhjavaweb.constant.SystemConstant;
+import com.laptrinhjavaweb.dao.BuildingDao;
+import com.laptrinhjavaweb.dao.anhyeuem.BuildingAnhyeuem;
 import com.laptrinhjavaweb.utils.ConnectionUtils;
 import com.laptrinhjavaweb.utils.StringUtils;
 
-public class BuildingJdbc {
+public class BuildingDaoImpl implements BuildingDao {
 
-	public static void main(String[] args) {
-		// beginner code
+	@Override
+	public List<BuildingAnhyeuem> findBuilding(Integer floorArea, String name, String ward, String street, String district) {
+//		BuildingAnhyeuem[] results = new BuildingAnhyeuem[] {};
+		List<BuildingAnhyeuem> results = new ArrayList<>();
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
-		// input
-		String name = null;
-		String street = null;
-		String ward = null;
-		String district = null;
-		Integer floorArea = 100;
-
+		
 		try {
 			// build SQL query
 			StringBuilder query = new StringBuilder ("SELECT * FROM building " + SystemConstant.ONE_EQUAL_ONE +"");
-
 			if(!StringUtils.isNullOrEmpty(name)) {
 				query.append(" and name like '%" + name + "%'");
 			}
@@ -49,15 +46,19 @@ public class BuildingJdbc {
 			conn = ConnectionUtils.getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(query.toString());
-			ResultSetMetaData rsmd = rs.getMetaData();
+//			int i = 0;
 			while(rs.next()){
-				System.out.print("Id: " + rs.getLong("id") + ", Type: " + rsmd.getColumnType(1));
-				System.out.print("Name: " + rs.getString("name"));
-				System.out.print(", Street: " + rs.getString("street"));
-				System.out.print(", District: " + rs.getString("district"));
-				System.out.print(", Ward: " + rs.getString("ward"));
-				System.out.println(", FloorArea: " + rs.getString("floorarea"));
+				BuildingAnhyeuem buildingAnhyeuem = new BuildingAnhyeuem();
+				buildingAnhyeuem.setName(rs.getString("name"));
+				buildingAnhyeuem.setStreet(rs.getString("street"));
+				buildingAnhyeuem.setWard(rs.getString("ward"));
+				buildingAnhyeuem.setDistrict(rs.getString("district"));
+				buildingAnhyeuem.setFloorArea(rs.getInt("floorarea"));
+//				results[i] = buildingAnhyeuem;
+//				i++;
+				results.add(buildingAnhyeuem);
 			}
+			return results;
 		} catch (ClassNotFoundException | SQLException e) {
 			System.out.println("Error: " + e.getMessage());
 		} catch (Exception e) {
@@ -71,5 +72,7 @@ public class BuildingJdbc {
 				System.out.println("Error: " + e.getMessage());
 			}
 		}
+		return new ArrayList<>();
 	}
+
 }
