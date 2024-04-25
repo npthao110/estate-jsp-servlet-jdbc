@@ -16,7 +16,7 @@ import com.laptrinhjavaweb.utils.StringUtils;
 public class BuildingDaoImpl implements BuildingDao {
 
 	@Override
-	public List<BuildingAnhyeuem> findBuilding(Integer floorArea, String name, String ward, String street, String district) {
+	public List<BuildingAnhyeuem> findBuilding(Integer floorArea, String name, String ward, String street, String district, String type) {
 //		BuildingAnhyeuem[] results = new BuildingAnhyeuem[] {};
 		List<BuildingAnhyeuem> results = new ArrayList<>();
 		Connection conn = null;
@@ -41,6 +41,9 @@ public class BuildingDaoImpl implements BuildingDao {
 			if(floorArea != null) {
 				query.append(" and floorArea like " + floorArea + "");
 			}
+			if(!StringUtils.isNullOrEmpty(type)) {
+				query.append(" and type like '%" + type + "%'");
+			}
 			
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = ConnectionUtils.getConnection();
@@ -54,6 +57,7 @@ public class BuildingDaoImpl implements BuildingDao {
 				buildingAnhyeuem.setWard(rs.getString("ward"));
 				buildingAnhyeuem.setDistrict(rs.getString("district"));
 				buildingAnhyeuem.setFloorArea(rs.getInt("floorarea"));
+				buildingAnhyeuem.setType(rs.getString("type"));
 //				results[i] = buildingAnhyeuem;
 //				i++;
 				results.add(buildingAnhyeuem);

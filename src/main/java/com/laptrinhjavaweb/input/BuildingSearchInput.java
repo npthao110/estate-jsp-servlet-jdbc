@@ -7,7 +7,15 @@ public class BuildingSearchInput {
 	private String ward;
 	private String street; 
 	private String district;
+	private String type;
+
 	
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public String getName() {
 		return name;
 	}

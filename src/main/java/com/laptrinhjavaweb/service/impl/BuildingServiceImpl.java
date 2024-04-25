@@ -18,12 +18,13 @@ public class BuildingServiceImpl implements BuildingService {
 	public List<BuildingOutput> findBuilding(BuildingSearchInput buildingModel) {
 		List<BuildingOutput> buildingEmyeuanhs = new ArrayList<>();
 		List<BuildingAnhyeuem> anhyeuems = buildingDao.findBuilding(buildingModel.getFloorArea(), buildingModel.getName(),buildingModel.getWard(), 
-								 buildingModel.getStreet(), buildingModel.getDistrict());
+								 buildingModel.getStreet(), buildingModel.getDistrict(), buildingModel.getType());
 //		int i = 0;
 		for(BuildingAnhyeuem item : anhyeuems) {
 			BuildingOutput buildingOutput = new BuildingOutput();
 			buildingOutput.setName(item.getName());
 			buildingOutput.setAddress(item.getStreet() + " - " + item.getWard() + " - " + item.getDistrict());
+			buildingOutput.setType(item.getType());
 //			buildingEmyeuanhs[i] = buildingEmyeuanh;
 //			i++;
 			buildingEmyeuanhs.add(buildingOutput);
