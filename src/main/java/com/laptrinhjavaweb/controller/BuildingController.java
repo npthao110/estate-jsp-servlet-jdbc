@@ -17,7 +17,7 @@ public class BuildingController {
 		return results;
 	}
 	
-	public BuildingDTO insert (BuildingDTO newBuilding) {
+	public BuildingDTO insert(BuildingDTO newBuilding) {
 		return null;
 	}
 }
