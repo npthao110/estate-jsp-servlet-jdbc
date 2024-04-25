@@ -1,6 +1,6 @@
-package com.laptrinhjavaweb.model;
+package com.laptrinhjavaweb.dto;
 
-public class CustomerModel extends BaseModel {
+public class CustomerDTO extends BaseDTO {
 	
 	private String fullName;
 	private String phone;

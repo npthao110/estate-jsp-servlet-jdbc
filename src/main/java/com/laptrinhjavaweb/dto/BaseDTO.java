@@ -1,6 +1,6 @@
-package com.laptrinhjavaweb.model;
+package com.laptrinhjavaweb.dto;
 
-public class BaseModel {
+public class BaseDTO {
 	
 	private Long id;
 	
