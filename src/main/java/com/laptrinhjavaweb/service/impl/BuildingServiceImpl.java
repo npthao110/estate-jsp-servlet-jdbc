@@ -9,8 +9,9 @@ import com.laptrinhjavaweb.dao.impl.BuildingDaoImpl;
 import com.laptrinhjavaweb.input.BuildingSearchInput;
 import com.laptrinhjavaweb.output.BuildingOutput;
 import com.laptrinhjavaweb.service.BuildingService;
-
+import com.laptrinhjavaweb.utils.BuildingTypeMapper;
 public class BuildingServiceImpl implements BuildingService {
+
 
 	private BuildingDao buildingDao = new BuildingDaoImpl();
 	
@@ -24,11 +25,12 @@ public class BuildingServiceImpl implements BuildingService {
 			BuildingOutput buildingOutput = new BuildingOutput();
 			buildingOutput.setName(item.getName());
 			buildingOutput.setAddress(item.getStreet() + " - " + item.getWard() + " - " + item.getDistrict());
-			buildingOutput.setType(item.getType());
+		    buildingOutput.setType(BuildingTypeMapper.mapType(item.getType()));
 //			buildingEmyeuanhs[i] = buildingEmyeuanh;
 //			i++;
 			buildingEmyeuanhs.add(buildingOutput);
 		}
+
 		return buildingEmyeuanhs;
 	}
 
