@@ -1,33 +1,23 @@
 package com.laptrinhjavaweb.utils;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 
 public class BuildingTypeMapper {
+
+    public static final String TANG_TRET = "tang-tret";
+    public static final String NGUYEN_CAN = "nguyen-can";
+    public static final String NOI_THAT = "noi-that";
 
     private static final Map<String, String> typeMap = new HashMap<>();
 
     static {
-        typeMap.put("tang-tret", "tầng trệt");
-        typeMap.put("nguyen-can", "nguyên căn");
-        typeMap.put("noi-that", "nội thất");
+        typeMap.put(TANG_TRET, "tầng trệt");
+        typeMap.put(NGUYEN_CAN, "nguyên căn");
+        typeMap.put(NOI_THAT, "nội thất");
     }
-
 
     public static String mapType(String type) {
-        List<String> types = Arrays.asList(type.split(","));
-        StringBuilder result = new StringBuilder();
-        for (String t : types) {
-            if (typeMap.containsKey(t)) {
-                if (result.length() > 0) {
-                    result.append(", ");
-                }
-                result.append(typeMap.get(t));
-            }
-        }
-        return result.toString().trim();
+        return typeMap.getOrDefault(type, "");
     }
-
 }
