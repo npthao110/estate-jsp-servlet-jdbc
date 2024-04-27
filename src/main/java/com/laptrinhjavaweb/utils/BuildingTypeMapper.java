@@ -1,20 +1,16 @@
 package com.laptrinhjavaweb.utils;
 
 import java.util.*;
-
+import com.laptrinhjavaweb.constant.BuildingTypeConstant;
 
 public class BuildingTypeMapper {
-
-    public static final String TANG_TRET = "tang-tret";
-    public static final String NGUYEN_CAN = "nguyen-can";
-    public static final String NOI_THAT = "noi-that";
-
+    
     private static final Map<String, String> typeMap = new HashMap<>();
 
     static {
-        typeMap.put(TANG_TRET, "tầng trệt");
-        typeMap.put(NGUYEN_CAN, "nguyên căn");
-        typeMap.put(NOI_THAT, "nội thất");
+        typeMap.put(BuildingTypeConstant.TANG_TRET, BuildingTypeConstant.TANG_TRET_NAME);
+        typeMap.put(BuildingTypeConstant.NGUYEN_CAN, BuildingTypeConstant.NGUYEN_CAN_NAME);
+        typeMap.put(BuildingTypeConstant.NOI_THAT, BuildingTypeConstant.NOI_THAT_NAME);
     }
 
     public static String mapType(String type) {

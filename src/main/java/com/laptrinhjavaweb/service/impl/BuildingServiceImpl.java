@@ -8,7 +8,7 @@ import com.laptrinhjavaweb.dao.anhyeuem.BuildingAnhyeuem;
 import com.laptrinhjavaweb.dao.impl.BuildingDaoImpl;
 import com.laptrinhjavaweb.input.BuildingSearchInput;
 import com.laptrinhjavaweb.output.BuildingOutput;
-import com.laptrinhjavaweb.service.impl.BuildingTypeConverter;
+import com.laptrinhjavaweb.converter.BuildingTypeConverter;
 import com.laptrinhjavaweb.service.BuildingService;
 
 public class BuildingServiceImpl implements BuildingService {
@@ -43,16 +43,10 @@ public class BuildingServiceImpl implements BuildingService {
 		        addressBuilder.append(street);
 		    }
 		    if (!ward.isEmpty()) {
-		        if (addressBuilder.length() > 0) {
-		            addressBuilder.append(" - ");
-		        }
-		        addressBuilder.append(ward);
+		        addressBuilder.append(" - ").append(ward);
 		    }
 		    if (!district.isEmpty()) {
-		        if (addressBuilder.length() > 0) {
-		            addressBuilder.append(" - ");
-		        }
-		        addressBuilder.append(district);
+		        addressBuilder.append(" - ").append(district);
 		    }
 
 		    buildingOutput.setAddress(addressBuilder.toString());

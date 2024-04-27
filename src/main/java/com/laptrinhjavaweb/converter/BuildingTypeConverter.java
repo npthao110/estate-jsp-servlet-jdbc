@@ -1,4 +1,4 @@
-package com.laptrinhjavaweb.service.impl;
+package com.laptrinhjavaweb.converter;
 
 import java.util.*;
 import com.laptrinhjavaweb.utils.BuildingTypeMapper;
