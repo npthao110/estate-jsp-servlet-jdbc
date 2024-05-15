@@ -20,24 +20,12 @@ public class BuildingServiceImpl implements BuildingService {
 		List<BuildingOutput> buildingEmyeuanhs = new ArrayList<>();
 		List<BuildingAnhyeuem> anhyeuems = buildingDao.findBuilding(buildingModel.getFloorArea(), buildingModel.getName(),buildingModel.getWard(), 
 								 buildingModel.getStreet(), buildingModel.getDistrict(), buildingModel.getType());
-//		int i = 0;
-//		for(BuildingAnhyeuem item : anhyeuems) {
-//			BuildingOutput buildingOutput = new BuildingOutput();
-//			buildingOutput.setName(item.getName());
-//			buildingOutput.setAddress(item.getStreet() + " - " + item.getWard() + " - " + item.getDistrict());
-//		    buildingOutput.setType(BuildingTypeConverter.convertType(item.getType()));
-////			buildingEmyeuanhs[i] = buildingEmyeuanh;
-////			i++;
-//			buildingEmyeuanhs.add(buildingOutput);
-//		}
 		for (BuildingAnhyeuem item : anhyeuems) {
 		    BuildingOutput buildingOutput = new BuildingOutput();
 		    buildingOutput.setName(item.getName());
-
 		    String street = item.getStreet() != null ? item.getStreet() : "";
 		    String ward = item.getWard() != null ? item.getWard() : "";
 		    String district = item.getDistrict() != null ? item.getDistrict() : "";
-
 		    StringBuilder addressBuilder = new StringBuilder();
 		    if (!street.isEmpty()) {
 		        addressBuilder.append(street);
@@ -48,12 +36,10 @@ public class BuildingServiceImpl implements BuildingService {
 		    if (!district.isEmpty()) {
 		        addressBuilder.append(" - ").append(district);
 		    }
-
 		    buildingOutput.setAddress(addressBuilder.toString());
 		    buildingOutput.setType(BuildingTypeConverter.convertType(item.getType()));
 		    buildingEmyeuanhs.add(buildingOutput);
 		}
-		
 		return buildingEmyeuanhs;
 	}
 

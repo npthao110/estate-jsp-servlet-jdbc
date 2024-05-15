@@ -1,24 +1,24 @@
 package com.laptrinhjavaweb.converter;
 
 import java.util.*;
-import com.laptrinhjavaweb.utils.BuildingTypeMapper;
 
+import com.laptrinhjavaweb.enums.BuildingTypeEnums;
 
 public class BuildingTypeConverter {
 
-    public static String convertType(String type) {
-        List<String> types = Arrays.asList(type.split(","));
-        StringBuilder result = new StringBuilder();
-        for (String t : types) {
-            String mappedType = BuildingTypeMapper.mapType(t.trim());
-            if (!mappedType.isEmpty()) {
-                if (result.length() > 0) {
-                    result.append(", ");
-                }
-                result.append(mappedType);
-            }
-        }
-        return result.toString().trim();
+	public static String convertType(String oldType) {
+		List<String> newTypes = new ArrayList<>();
+	    if(oldType != null) { 
+	        for(String item: oldType.split(",")) {
+	            for (BuildingTypeEnums value : BuildingTypeEnums.values()) {
+	                if (value.name().equalsIgnoreCase(item)) {
+	                    newTypes.add(value.getValue());
+	                }
+	            }
+	        }
+	        return String.join(", ", newTypes);
+	    }
+	    return null;
     }
-
 }
+

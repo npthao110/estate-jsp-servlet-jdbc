@@ -23,16 +23,8 @@ public class BuildingListView {
 		buildingSearch.setDistrict(district);
 		BuildingController buildingController = new BuildingController();
 		List<BuildingOutput> buildings = buildingController.findBuilding(buildingSearch);
-//		System.out.println("test");
-//		Map<String, String> typeMapping = new HashMap<>();
-//		typeMapping.put("tang-tret,nguyen-can", "(tầng trệt, nguyên căn)");
-//		typeMapping.put("nguyen-can,noi-that", "(nguyên căn, nội thất)");
+		
 		for (BuildingOutput item : buildings) {
-//		    String type = item.getType();
-//		    if (typeMapping.containsKey(type)) {
-//		        type = typeMapping.get(type);
-//		    }
-
 		    System.out.println(item.getName() + ", " + item.getAddress() + ", (" + item.getType() + ")");
 		}
 
