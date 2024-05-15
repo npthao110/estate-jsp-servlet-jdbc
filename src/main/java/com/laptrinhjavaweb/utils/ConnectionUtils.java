@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionUtils {
-	private static String DB_URL = "jdbc:mysql://localhost:3306/javacore42024";
-	private static String USER = "root";
-	private static String PASS = "Caonguyenk1@";
+	private static String DB_URL = "jdbc:mysql://localhost:/db_exe1_sql";
+	private static String USER = "";
+	private static String PASS = "";
 	
 	public static Connection getConnection() {
 		Connection conn = null;

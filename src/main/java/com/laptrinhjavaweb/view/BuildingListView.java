@@ -10,7 +10,7 @@ import com.laptrinhjavaweb.output.BuildingOutput;
 public class BuildingListView {
 
 	public static void main(String[] args) {
-		String name = null;
+		String name = "Building";
 		String street = null;
 		String ward = null;
 		String district = null;

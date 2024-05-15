@@ -38,11 +38,11 @@ public class BuildingDaoImpl implements BuildingDao {
 			if(!StringUtils.isNullOrEmpty(district)) {
 				query.append(" and district like '%" + district + "%'");
 			}
-			if(floorArea != null) {
-				query.append(" and floorArea like " + floorArea + "");
-			}
+//			if(floorArea != null) {
+//				query.append(" and floorArea like " + floorArea + "");
+//			}
 			if(!StringUtils.isNullOrEmpty(type)) {
-				query.append(" and type like '%" + type + "%'");
+				query.append(" and building_type like '%" + type + "%'");
 			}
 			
 			Class.forName("com.mysql.jdbc.Driver");
@@ -56,8 +56,8 @@ public class BuildingDaoImpl implements BuildingDao {
 				buildingAnhyeuem.setStreet(rs.getString("street"));
 				buildingAnhyeuem.setWard(rs.getString("ward"));
 				buildingAnhyeuem.setDistrict(rs.getString("district"));
-				buildingAnhyeuem.setFloorArea(rs.getInt("floorarea"));
-				buildingAnhyeuem.setType(rs.getString("type"));
+//				buildingAnhyeuem.setFloorArea(rs.getInt("floorarea"));
+				buildingAnhyeuem.setType(rs.getString("building_type"));
 //				results[i] = buildingAnhyeuem;
 //				i++;
 				results.add(buildingAnhyeuem);
